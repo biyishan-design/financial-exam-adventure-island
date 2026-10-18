@@ -265,6 +265,73 @@ button{transition:filter .15s,transform .15s}button:hover{filter:brightness(1.06
  .player-island{width:176px!important;height:176px!important;top:52%!important}.player-island .emoji{font-size:43px!important}.player-island strong{font-size:16px!important}
  .map-wrap .island[style*="left:20%"]{left:23%!important;top:31%!important}.map-wrap .island[style*="left:78%"]{left:77%!important;top:31%!important}.map-wrap .island[style*="left:17%"]{left:23%!important;top:70%!important}.map-wrap .island[style*="left:81%"]{left:77%!important;top:70%!important}.map-wrap .island[style*="left:50%"]:not(.player-island){left:50%!important;top:19%!important}
 }
+
+/* v7 hotfix: organic raised islands, consistent palette, no broken polygon clipping */
+.map-wrap{
+  min-height:clamp(690px,78vh,820px)!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(ellipse at 14% 22%,#f4ffff 0 4%,transparent 4.8%),
+    radial-gradient(ellipse at 84% 26%,#eafffb 0 5%,transparent 5.8%),
+    radial-gradient(ellipse at 18% 76%,#d8f8f1 0 6%,transparent 6.8%),
+    radial-gradient(ellipse at 83% 77%,#e6fbf5 0 7%,transparent 7.8%),
+    repeating-radial-gradient(ellipse at 52% 52%,transparent 0 42px,#ffffff12 44px 46px,transparent 48px 78px),
+    linear-gradient(150deg,#9fe2e7 0%,#78d0dc 48%,#65c3d4 100%)!important;
+  border:5px solid #f8ffff!important;border-radius:28px!important;
+  box-shadow:inset 0 0 0 1px #ffffffb8,0 16px 32px #276b7a20!important;
+}
+.map-wrap:before{background-image:radial-gradient(#ffffffb0 1px,transparent 1.8px)!important;background-size:36px 36px!important;opacity:.13!important}
+.map-wrap:after{background:linear-gradient(125deg,#ffffff25,transparent 38%,#1b6e8508 72%,transparent)!important}
+.map-title{display:none!important}
+.map-route path{stroke:#fff9e5!important;stroke-width:1.8!important;stroke-dasharray:2 4!important;opacity:.72!important;filter:drop-shadow(0 1px 1px #327c8c45)!important}
+/* Regular destination islands: remove polygon clip-path that caused jagged broken edges */
+.island{
+  clip-path:none!important;
+  width:clamp(142px,17vw,176px)!important;min-height:144px!important;
+  padding:15px 10px 17px!important;gap:5px!important;
+  border:0!important;border-radius:48% 52% 45% 55%!important;
+  background:linear-gradient(180deg,#fff4cf 0%,#f3d99b 57%,#bd8c58 58%,#a9774b 78%,#f7e5b4 79%,#fff5dc 100%)!important;
+  box-shadow:0 9px 0 #7f9c8b55,0 14px 20px #1d5e6b2b,inset 0 2px 0 #fff!important;
+  filter:none!important;overflow:visible!important;isolation:isolate;
+}
+.island:before{
+  content:""!important;position:absolute!important;inset:7px 8px 22px!important;
+  border:2px solid #ffffffb0!important;border-radius:48% 52% 45% 55%!important;
+  background:radial-gradient(ellipse at 25% 24%,#efffc9 0 7%,transparent 8%),radial-gradient(ellipse at 76% 30%,#d9f5ad 0 8%,transparent 9%),radial-gradient(ellipse at 44% 72%,#a8df91 0 12%,transparent 13%),linear-gradient(145deg,#d8efad 0%,#9bd28e 50%,#55a985 100%)!important;
+  box-shadow:inset 0 4px 0 #ffffff88,inset 0 -8px 0 #327b6650!important;z-index:-1!important;opacity:1!important;
+}
+.island:after{content:""!important;position:absolute!important;inset:5px 10px auto!important;height:14px!important;border:0!important;border-top:2px solid #ffffff95!important;border-radius:50%!important;color:transparent!important;pointer-events:none!important}
+.island .emoji{font-size:clamp(32px,3.4vw,42px)!important;filter:drop-shadow(0 3px 2px #34594a35)!important;z-index:2!important}
+.island strong{font-size:15px!important;font-weight:900!important;z-index:2!important;text-shadow:0 1px #fff,0 0 5px #fff9!important}
+.island small{font-size:10px!important;background:#fffdf2ed!important;color:#294b5b!important;border:1px solid #ffffff!important;border-radius:99px!important;padding:4px 8px!important;box-shadow:0 2px 4px #2e63531a!important;z-index:2!important}
+/* Cohesive island accents by category */
+.map-wrap .island[style*="left:20%"]:before{background:radial-gradient(ellipse at 25% 24%,#fff7c8 0 7%,transparent 8%),linear-gradient(145deg,#e7f1b0,#a7d17c 52%,#55996d)!important}
+.map-wrap .island[style*="left:78%"]:before{background:radial-gradient(ellipse at 25% 24%,#fff1df 0 7%,transparent 8%),linear-gradient(145deg,#d5f1d9,#8ac9ad 52%,#4b9c91)!important}
+.map-wrap .island[style*="left:17%"]:before{background:radial-gradient(ellipse at 25% 24%,#f4fbff 0 7%,transparent 8%),linear-gradient(145deg,#d8f0e2,#8ec9b2 52%,#508b91)!important}
+.map-wrap .island[style*="left:81%"]:before{background:radial-gradient(ellipse at 25% 24%,#f8f0ff 0 7%,transparent 8%),linear-gradient(145deg,#e6defa,#b5a7e0 52%,#8079bc)!important}
+.map-wrap .island[style*="left:50%"]:not(.player-island):before{background:radial-gradient(ellipse at 25% 24%,#fff1f8 0 7%,transparent 8%),linear-gradient(145deg,#f8ddeb,#e6b7d6 52%,#b98ac1)!important}
+/* No lighthouse or boats anywhere on the map */
+.lighthouse,.player-lighthouse,.boat-marker,#targetBoats,.target-island{display:none!important}
+.player-island{
+  clip-path:none!important;left:50%!important;top:53%!important;
+  width:clamp(196px,27vw,232px)!important;height:clamp(196px,27vw,232px)!important;
+  border:8px solid #fff2c9!important;border-radius:50%!important;
+  background:linear-gradient(180deg,#fbe6a5 0%,#e6c67b 17%,#a7d98f 18%,#6dc38e 62%,#347e78 100%)!important;
+  box-shadow:0 10px 0 #6c9a7b55,0 18px 28px #15596b38,inset 0 0 0 3px #ffffffb8,inset 0 -12px 18px #286b6250!important;
+  filter:none!important;overflow:visible!important;
+}
+.player-island:before{inset:12px!important;border-radius:50%!important;border:2px solid #ffffffa0!important;background:radial-gradient(ellipse at 28% 25%,#f5ffd6 0 7%,transparent 8%),radial-gradient(ellipse at 73% 30%,#e8ffc6 0 8%,transparent 9%),radial-gradient(ellipse at 50% 72%,#73c78e 0 30%,transparent 31%),linear-gradient(145deg,#c8e99b,#73c995 62%,#4a9d88)!important;box-shadow:inset 0 4px 0 #ffffff8a,inset 0 -8px 0 #367c6750!important}
+.player-island:after{content:"✦"!important;position:absolute!important;right:17%!important;top:17%!important;left:auto!important;inset:auto 17% auto auto!important;height:auto!important;border:0!important;color:#fff7bc!important;font-size:20px!important;text-shadow:0 0 12px #fff,0 0 18px #ffe27b!important;pointer-events:none!important}
+.player-island .emoji{font-size:clamp(44px,6vw,58px)!important;z-index:2!important}
+.player-island strong{position:relative;z-index:2;background:#fffdf0ed;border:1px solid #fff;border-radius:14px;padding:5px 11px;font-size:18px;box-shadow:0 3px 0 #c6a76c55}
+.player-island small{position:relative;z-index:2;background:#315e77;color:#fff;border-radius:99px;padding:5px 10px}
+@media(max-width:600px){
+ .map-wrap{min-height:clamp(650px,75vh,760px)!important;border-radius:22px!important}
+ .island{width:clamp(126px,35vw,143px)!important;min-height:126px!important;padding:12px 6px 14px!important}
+ .island:before{inset:6px 7px 20px!important}.island .emoji{font-size:29px!important}.island strong{font-size:13px!important}.island small{font-size:9px!important;padding:3px 6px!important}
+ .player-island{width:176px!important;height:176px!important;top:52%!important}.player-island .emoji{font-size:43px!important}.player-island strong{font-size:16px!important}
+ .map-wrap .island[style*="left:20%"]{left:23%!important;top:31%!important}.map-wrap .island[style*="left:78%"]{left:77%!important;top:31%!important}.map-wrap .island[style*="left:17%"]{left:23%!important;top:70%!important}.map-wrap .island[style*="left:81%"]{left:77%!important;top:70%!important}.map-wrap .island[style*="left:50%"]:not(.player-island){left:50%!important;top:19%!important}
+}
 </style></head><body>
 <header class="top"><div><div class="brand">🏝️ 考照冒險島</div><div class="stats">你的職涯成就，由你來創造</div></div><div class="stats" id="topStats">Lv.1 · 0 XP</div><button onclick="openPlayer()">👤 玩家選單</button></header>
 <main>
