@@ -157,6 +157,114 @@ button{transition:filter .15s,transform .15s}button:hover{filter:brightness(1.06
  .player-island .player-lighthouse{font-size:37px;top:-23px}
 }
 
+
+
+/* v8: dimensional destination islands; remove lighthouse and boat decorations */
+.lighthouse, .player-island .lighthouse, .boat-marker, #targetBoats { display:none !important; }
+.island {
+  width:clamp(142px,17vw,176px);
+  min-height:148px;
+  padding:18px 10px 14px;
+  border:1px solid #ffffffd9;
+  border-radius:28px 32px 25px 30px;
+  background:linear-gradient(155deg,#fffdf6 0%,#f7f1d9 38%,#e2d5ac 100%);
+  box-shadow:0 8px 0 #b9a777, 0 13px 24px #194c6338, inset 0 2px 0 #fff;
+  color:#213c54;
+  filter:none;
+  gap:5px;
+  overflow:visible;
+  isolation:isolate;
+}
+.island:before {
+  content:""; position:absolute; inset:0 0 9px; z-index:-1;
+  border-radius:inherit;
+  background:linear-gradient(135deg,#ffffffb8 0%,transparent 42%),linear-gradient(0deg,#9c8d5b20,transparent 55%);
+  box-shadow:inset 0 -5px 0 #b7a16c55, inset 0 0 0 2px #fff9e7;
+  pointer-events:none;
+}
+.island:after {content:"";position:absolute;inset:auto 13px 7px;height:5px;border-radius:99px;background:#a08a5940;filter:blur(2px);pointer-events:none}
+.island .emoji {font-size:36px;filter:drop-shadow(0 3px 1px #243b4b30);}
+.island strong {font-size:15px;text-shadow:none;}
+.island small {font-size:10px;background:#ffffffdc;color:#31536b;border:1px solid #ffffff;padding:3px 8px;border-radius:99px;}
+.island:nth-of-type(2) {background:linear-gradient(150deg,#fff9d9,#f4df9e 55%,#dfbf71);box-shadow:0 8px 0 #b9954c,0 13px 24px #194c6338,inset 0 2px 0 #fff;}
+.island:nth-of-type(3) {background:linear-gradient(150deg,#e9f7ff,#c5e7f7 55%,#8ebed8);box-shadow:0 8px 0 #7aa8c2,0 13px 24px #194c6338,inset 0 2px 0 #fff;}
+.island:nth-of-type(4) {background:linear-gradient(150deg,#f3eaff,#d9c8f4 55%,#b29cdb);box-shadow:0 8px 0 #9480bf,0 13px 24px #194c6338,inset 0 2px 0 #fff;}
+.island:nth-of-type(5) {background:linear-gradient(150deg,#e5fff2,#bcebd4 55%,#83c8a8);box-shadow:0 8px 0 #69a98a,0 13px 24px #194c6338,inset 0 2px 0 #fff;}
+.island:nth-of-type(6) {background:linear-gradient(150deg,#fff0e5,#f7cfb0 55%,#e6a781);box-shadow:0 8px 0 #c18b69,0 13px 24px #194c6338,inset 0 2px 0 #fff;}
+.player-island {
+  border-radius:50%;
+  background:radial-gradient(circle at 32% 22%,#fff9db 0%,transparent 20%),linear-gradient(145deg,#a5e4c4 0%,#65bda5 48%,#3d8b8b 100%);
+  border:5px solid #fafff4;
+  box-shadow:0 10px 0 #347c7d,0 19px 32px #174e6250,inset 0 0 0 4px #d4f2d7,inset 0 -12px 18px #245d5c36;
+}
+.player-island:before {border-radius:50%;inset:10px;background:radial-gradient(circle at 25% 25%,#fff9d980 0 4%,transparent 5%),radial-gradient(circle at 75% 72%,#e8ffd055 0 7%,transparent 8%);border:1px solid #ffffff85;}
+.player-island:after {content:"";position:absolute;inset:auto 22px 10px;height:7px;border-radius:50%;background:#174d4e30;filter:blur(3px);pointer-events:none;}
+.map-wrap {background:radial-gradient(ellipse at 16% 18%,#e8fff4 0 5%,transparent 5.7%),radial-gradient(ellipse at 83% 27%,#e2f8ff 0 6%,transparent 6.7%),radial-gradient(ellipse at 22% 78%,#d8f3fa 0 7%,transparent 7.8%),radial-gradient(ellipse at 80% 77%,#e5f7ed 0 8%,transparent 8.8%),linear-gradient(145deg,#a8e5e7 0%,#83d1e0 48%,#6cbdd5 100%);}
+.map-wrap:before {background-image:radial-gradient(#ffffffb8 1px,transparent 1.8px);background-size:35px 35px;opacity:.18;}
+.map-route {opacity:.5;}
+.map-route path {stroke:#fafff0;stroke-width:1.4;stroke-dasharray:2 5;filter:drop-shadow(0 1px 1px #2d718044);}
+@media(max-width:600px){
+ .island{width:clamp(118px,33vw,138px);min-height:120px;padding:13px 6px 12px;border-radius:23px 26px 22px 24px;box-shadow:0 6px 0 #b9a777,0 10px 18px #194c6338,inset 0 2px 0 #fff;}
+ .island .emoji{font-size:31px}.island strong{font-size:13px}.island small{font-size:9px}
+ .player-island{width:184px;height:176px;box-shadow:0 7px 0 #347c7d,0 14px 25px #174e6250,inset 0 0 0 4px #d4f2d7,inset 0 -12px 18px #245d5c36;}
+}
+
+
+/* v8: CSS-only dimensional islands; no lighthouse or boat graphics */
+.lighthouse,#targetBoats,.boat-marker,.target-island{display:none!important}
+.map-wrap{
+  min-height:clamp(700px,82vh,860px)!important;
+  border:5px solid #f9ffff!important;border-radius:30px!important;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 14% 16%,#f4ffff 0 4%,transparent 4.6%),
+    radial-gradient(ellipse at 85% 21%,#e8fffa 0 5%,transparent 5.7%),
+    radial-gradient(ellipse at 18% 76%,#c5f2ed 0 7%,transparent 7.8%),
+    radial-gradient(ellipse at 84% 78%,#d9f7ef 0 8%,transparent 8.8%),
+    radial-gradient(ellipse at 50% 45%,#a5e5e9 0%,#79d0dc 55%,#54b9d0 100%)!important;
+  box-shadow:0 18px 38px #205b6b24,inset 0 0 0 2px #ffffffa8!important;
+}
+.map-wrap:before{background-image:radial-gradient(#ffffffd9 1px,transparent 1.8px),radial-gradient(#ffffff65 2px,transparent 2.8px)!important;background-size:29px 29px,103px 103px!important;opacity:.2!important}
+.map-wrap:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,#ffffff2b,transparent 36%,#236f8a0b 70%,transparent);z-index:0}
+.map-route path{stroke:#fff9e8!important;stroke-width:1.4!important;stroke-dasharray:1.2 3.2!important;filter:drop-shadow(0 2px 1px #27798a50)!important;opacity:.8!important}
+.island{
+  width:clamp(136px,17vw,174px)!important;min-height:146px!important;padding:17px 10px 15px!important;
+  position:absolute;border:2px solid #ffffffd9!important;border-radius:34px 30px 36px 30px!important;
+  background:linear-gradient(155deg,#fff8d9 0%,#f5dba0 35%,#dba86d 36%,#bd8757 48%,#f4e7b9 49%,#fff8e7 100%)!important;
+  box-shadow:0 10px 0 #92744b55,0 15px 24px #1c586a35,inset 0 2px 0 #fff,inset 0 -5px 0 #bb8a5a55!important;
+  filter:none!important;overflow:visible!important;gap:5px!important;isolation:isolate;
+}
+.island:before{content:"";position:absolute;inset:8px 7px 20px!important;border-radius:25px 22px 28px 22px!important;background:linear-gradient(145deg,#e1f6c7,#94d5a1 52%,#5eb18a)!important;box-shadow:inset 0 4px 0 #ffffff85,inset 0 -7px 0 #3b8e7060!important;z-index:-1;opacity:1!important}
+.island:after{content:"✦　✧";position:absolute;top:10px;right:11px;left:auto;inset:auto 10px auto auto;border:0!important;color:#fff8d8;font-size:13px;letter-spacing:3px;text-shadow:0 1px 2px #548f7a;pointer-events:none;z-index:1}
+.island .emoji{font-size:clamp(31px,3.4vw,40px)!important;filter:drop-shadow(0 3px 1px #254d4330)!important;z-index:2}
+.island strong{font-size:15px!important;font-weight:900!important;z-index:2;text-shadow:0 1px #fff}
+.island small{font-size:10px!important;background:#fffdf0ed!important;color:#294b5b!important;border:1px solid #ffffff!important;border-radius:99px!important;padding:4px 8px!important;box-shadow:0 2px 4px #2e63531a;z-index:2}
+/* Destination-specific palettes */
+.map-wrap .island[style*="left:20%"]{background:linear-gradient(155deg,#fff4ca 0%,#f0d18a 35%,#c18d50 36%,#a96f42 48%,#f8e7ad 49%,#fff8df 100%)!important}
+.map-wrap .island[style*="left:20%"]:before{background:linear-gradient(145deg,#e4f3b6,#9ecb77 52%,#4d9b6b)!important}
+.map-wrap .island[style*="left:78%"]{background:linear-gradient(155deg,#fff0da 0%,#f1c8a4 35%,#b97760 36%,#995747 48%,#f9dfc4 49%,#fff8ec 100%)!important}
+.map-wrap .island[style*="left:78%"]:before{background:linear-gradient(145deg,#d6f3d8,#8dcdb0 55%,#4e9e91)!important}
+.map-wrap .island[style*="left:17%"]{background:linear-gradient(155deg,#e8f5ff 0%,#b6d5ed 35%,#698db7 36%,#4e6d98 48%,#e0efff 49%,#f8fcff 100%)!important}
+.map-wrap .island[style*="left:17%"]:before{background:linear-gradient(145deg,#d6f4d8,#86c7a0 55%,#428b7b)!important}
+.map-wrap .island[style*="left:81%"]{background:linear-gradient(155deg,#f1e9ff 0%,#d4c2f2 35%,#9a7dc5 36%,#795ba9 48%,#eee5ff 49%,#fbf8ff 100%)!important}
+.map-wrap .island[style*="left:81%"]:before{background:linear-gradient(145deg,#d7f4df,#92cba2 55%,#5c9d90)!important}
+.map-wrap .island[style*="left:50%"]:not(.player-island){background:linear-gradient(155deg,#fce6f2 0%,#e8b9d9 35%,#ad7cae 36%,#885f9c 48%,#f5dff0 49%,#fff7fd 100%)!important}
+.map-wrap .island[style*="left:50%"]:not(.player-island):before{background:linear-gradient(145deg,#f9e0ee,#dca9d3 52%,#a37ab7)!important}
+.player-island{
+  width:clamp(190px,26vw,236px)!important;height:clamp(190px,26vw,236px)!important;left:50%!important;top:53%!important;
+  border:7px solid #fff6d9!important;border-radius:48% 52% 45% 55%!important;
+  background:linear-gradient(150deg,#f9e6a5 0%,#e5c67d 18%,#a9d88d 19%,#62b88c 63%,#367e77 100%)!important;
+  box-shadow:0 12px 0 #92744b55,0 20px 30px #165a6b45,inset 0 0 0 3px #ffffffb5,inset 0 -12px 20px #286b6250!important;
+  filter:none!important;overflow:visible!important;
+}
+.player-island:before{inset:12px!important;border-radius:inherit!important;border:2px solid #ffffffa0!important;background:radial-gradient(ellipse at 30% 28%,#f5ffd6 0 7%,transparent 8%),radial-gradient(ellipse at 73% 34%,#e8ffc6 0 8%,transparent 9%),radial-gradient(ellipse at 50% 70%,#73c78e 0 30%,transparent 31%),linear-gradient(145deg,#c8e99b,#73c995 62%,#4a9d88)!important;box-shadow:inset 0 4px 0 #ffffff8a,inset 0 -8px 0 #367c6750!important}
+.player-island .lighthouse{display:none!important}.player-island .emoji{font-size:clamp(44px,6vw,58px)!important;z-index:2;filter:drop-shadow(0 4px 2px #214b433d)!important}.player-island strong{position:relative;z-index:2;background:#fffdf0ed!important;border:1px solid #fff;border-radius:14px;padding:5px 11px!important;font-size:18px!important;box-shadow:0 3px 0 #c6a76c55}.player-island small{position:relative;z-index:2;background:#315e77!important;color:#fff!important;border-radius:99px;padding:5px 10px!important}
+@media(max-width:600px){
+ .map-wrap{min-height:clamp(690px,78vh,820px)!important;border-radius:24px!important}
+ .island{width:clamp(116px,33vw,134px)!important;min-height:119px!important;padding:12px 5px 10px!important;border-radius:25px 23px 27px 22px!important}
+ .island:before{inset:7px 6px 17px!important;border-radius:19px!important}.island .emoji{font-size:29px!important}.island strong{font-size:13px!important}.island small{font-size:9px!important;padding:3px 6px!important}
+ .player-island{width:176px!important;height:176px!important;top:52%!important}.player-island .emoji{font-size:43px!important}.player-island strong{font-size:16px!important}
+ .map-wrap .island[style*="left:20%"]{left:23%!important;top:31%!important}.map-wrap .island[style*="left:78%"]{left:77%!important;top:31%!important}.map-wrap .island[style*="left:17%"]{left:23%!important;top:70%!important}.map-wrap .island[style*="left:81%"]{left:77%!important;top:70%!important}.map-wrap .island[style*="left:50%"]:not(.player-island){left:50%!important;top:19%!important}
+}
 </style></head><body>
 <header class="top"><div><div class="brand">🏝️ 考照冒險島</div><div class="stats">你的職涯成就，由你來創造</div></div><div class="stats" id="topStats">Lv.1 · 0 XP</div><button onclick="openPlayer()">👤 玩家選單</button></header>
 <main>
