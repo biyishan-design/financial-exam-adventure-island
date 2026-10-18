@@ -332,6 +332,93 @@ button{transition:filter .15s,transform .15s}button:hover{filter:brightness(1.06
  .player-island{width:176px!important;height:176px!important;top:52%!important}.player-island .emoji{font-size:43px!important}.player-island strong{font-size:16px!important}
  .map-wrap .island[style*="left:20%"]{left:23%!important;top:31%!important}.map-wrap .island[style*="left:78%"]{left:77%!important;top:31%!important}.map-wrap .island[style*="left:17%"]{left:23%!important;top:70%!important}.map-wrap .island[style*="left:81%"]{left:77%!important;top:70%!important}.map-wrap .island[style*="left:50%"]:not(.player-island){left:50%!important;top:19%!important}
 }
+
+
+/* v7 responsive redesign: polished destination cards instead of awkward island shapes */
+main{max-width:1100px!important;padding:clamp(8px,2vw,20px)!important}
+#mapView{width:100%}
+.map-wrap{
+  position:relative!important;width:100%!important;
+  height:clamp(620px,78vh,820px)!important;min-height:0!important;
+  border:1px solid #ffffffd9!important;border-radius:30px!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(ellipse at 14% 16%,#ffffff9c 0 2.6%,transparent 3.5%),
+    radial-gradient(ellipse at 86% 21%,#ffffff85 0 3.2%,transparent 4%),
+    radial-gradient(ellipse at 16% 79%,#d8fff26e 0 6%,transparent 7%),
+    radial-gradient(ellipse at 84% 78%,#d8fff26e 0 7%,transparent 8%),
+    repeating-radial-gradient(ellipse at 50% 48%,transparent 0 42px,#ffffff17 43px 45px,transparent 46px 82px),
+    linear-gradient(150deg,#b5edf0 0%,#80d6df 48%,#63c2d4 100%)!important;
+  box-shadow:inset 0 0 0 5px #ffffff7a,0 18px 40px #1b62731c!important;
+}
+.map-wrap:before{background-image:radial-gradient(#fff 1px,transparent 1.8px)!important;background-size:32px 32px!important;opacity:.12!important}
+.map-wrap:after{background:linear-gradient(130deg,#ffffff2b,transparent 45%,#1a718012 85%)!important}
+.map-title{display:none!important}
+.map-route{z-index:0!important;opacity:.65!important}
+.map-route path{stroke:#f8ffff!important;stroke-width:1.1!important;stroke-dasharray:1.5 2.7!important;filter:none!important;opacity:.85!important}
+/* destinations are clean, tactile cards with category colors */
+.island{
+  width:clamp(116px,15vw,158px)!important;height:clamp(112px,14vw,145px)!important;min-height:0!important;
+  padding:13px 8px!important;gap:5px!important;
+  border:1px solid #ffffffd9!important;border-radius:25px!important;
+  background:linear-gradient(150deg,#fffef5 0%,#f5fbf2 58%,#e0f2df 100%)!important;
+  box-shadow:0 7px 0 #4b9e9b26,0 13px 24px #286b7926,inset 0 1px 0 #fff!important;
+  filter:none!important;clip-path:none!important;overflow:hidden!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  transition:transform .2s,box-shadow .2s!important;z-index:2!important;
+}
+.island:before{inset:0!important;border:0!important;border-radius:inherit!important;background:radial-gradient(circle at 18% 12%,#ffffffbd 0 7%,transparent 8%),linear-gradient(145deg,#ffffff20,transparent 60%)!important;box-shadow:none!important;z-index:0!important}
+.island:after{content:""!important;position:absolute!important;left:12px!important;right:12px!important;top:auto!important;bottom:0!important;height:5px!important;border:0!important;border-radius:10px 10px 0 0!important;background:#69b7a5!important;opacity:.8!important}
+.island .emoji{font-size:clamp(28px,3.2vw,38px)!important;line-height:1.15!important;z-index:1!important;filter:drop-shadow(0 3px 2px #35584a26)!important}
+.island strong{font-size:clamp(12px,1.3vw,15px)!important;z-index:1!important;text-shadow:none!important;color:#24475a!important}
+.island small{font-size:10px!important;padding:4px 8px!important;margin-top:1px!important;background:#edf7f5!important;border:1px solid #d9eeea!important;box-shadow:none!important;z-index:1!important}
+.map-wrap .island[style*="left:20%"]{left:23%!important;top:30%!important}
+.map-wrap .island[style*="left:78%"]{left:77%!important;top:30%!important}
+.map-wrap .island[style*="left:17%"]{left:23%!important;top:72%!important}
+.map-wrap .island[style*="left:81%"]{left:77%!important;top:72%!important}
+.map-wrap .island[style*="left:50%"]:not(.player-island){left:50%!important;top:15%!important}
+/* category-specific card accents */
+.map-wrap .island[style*="left:20%"]{background:linear-gradient(150deg,#fffbe7,#f5e9bf 70%,#ead49b)!important}
+.map-wrap .island[style*="left:78%"]{background:linear-gradient(150deg,#fff8f2,#f8dfd7 70%,#edc4bd)!important}
+.map-wrap .island[style*="left:17%"]{background:linear-gradient(150deg,#f4fcff,#dceff3 70%,#c5e1e9)!important}
+.map-wrap .island[style*="left:81%"]{background:linear-gradient(150deg,#faf7ff,#e9e1fa 70%,#d6c9f0)!important}
+.map-wrap .island[style*="left:50%"]:not(.player-island){background:linear-gradient(150deg,#fff7fc,#f4dff0 70%,#e7c9e2)!important}
+.player-island{
+  left:50%!important;top:51%!important;width:clamp(166px,22vw,218px)!important;height:clamp(166px,22vw,218px)!important;
+  border:7px solid #fff8dc!important;border-radius:50%!important;
+  background:linear-gradient(155deg,#f6e4a5 0%,#e7ca80 15%,#b5e6a0 16%,#76c99c 65%,#469b91 100%)!important;
+  box-shadow:0 9px 0 #4c8f8430,0 18px 32px #1e667b32,inset 0 0 0 3px #ffffffc2,inset 0 -12px 16px #286b6240!important;
+  filter:none!important;overflow:hidden!important;z-index:5!important;gap:5px!important;
+}
+.player-island:before{inset:10px!important;border-radius:50%!important;border:1px solid #ffffff9c!important;background:radial-gradient(circle at 25% 25%,#fff8d7 0 5%,transparent 6%),radial-gradient(circle at 76% 30%,#eaffd4 0 6%,transparent 7%),linear-gradient(145deg,#c9e9a2,#83d0a0 65%,#56a99a)!important;box-shadow:inset 0 4px 0 #ffffff7d,inset 0 -8px 12px #327b6650!important;z-index:0!important}
+.player-island:after{content:"✦"!important;right:18%!important;top:17%!important;left:auto!important;inset:auto 18% auto auto!important;color:#fff8c4!important;font-size:19px!important;text-shadow:0 0 10px #fff!important;z-index:2!important}
+.player-island .emoji{font-size:clamp(42px,5.3vw,58px)!important;z-index:2!important}
+.player-island strong{font-size:clamp(15px,1.8vw,19px)!important;background:#fffdf0ed!important;border:1px solid #fff!important;border-radius:13px!important;padding:5px 10px!important;box-shadow:0 3px 0 #c6a76c45!important;z-index:2!important}
+.player-island small{font-size:11px!important;background:#315e77!important;color:white!important;border-radius:99px!important;padding:5px 9px!important;z-index:2!important}
+.lighthouse,.player-lighthouse,.boat-marker,#targetBoats,.target-island{display:none!important}
+@media(max-width:600px){
+  main{padding:8px!important}
+  .map-wrap{height:clamp(570px,70svh,700px)!important;min-height:0!important;border-radius:23px!important}
+  .island{width:clamp(96px,27vw,124px)!important;height:clamp(98px,26vw,118px)!important;padding:9px 5px!important;border-radius:21px!important;gap:4px!important}
+  .island .emoji{font-size:27px!important}.island strong{font-size:12px!important}.island small{font-size:9px!important;padding:3px 6px!important}
+  .map-wrap .island[style*="left:20%"]{left:23%!important;top:31%!important}
+  .map-wrap .island[style*="left:78%"]{left:77%!important;top:31%!important}
+  .map-wrap .island[style*="left:17%"]{left:23%!important;top:72%!important}
+  .map-wrap .island[style*="left:81%"]{left:77%!important;top:72%!important}
+  .map-wrap .island[style*="left:50%"]:not(.player-island){left:50%!important;top:15%!important}
+  .player-island{width:clamp(142px,39vw,170px)!important;height:clamp(142px,39vw,170px)!important;top:52%!important;border-width:6px!important}
+  .player-island .emoji{font-size:40px!important}.player-island strong{font-size:15px!important}.player-island small{font-size:10px!important;padding:4px 8px!important}
+}
+@media(max-width:380px){
+  .map-wrap{height:570px!important}
+  .island{width:96px!important;height:98px!important}
+  .map-wrap .island[style*="left:20%"]{left:22%!important;top:31%!important}
+  .map-wrap .island[style*="left:78%"]{left:78%!important;top:31%!important}
+  .map-wrap .island[style*="left:17%"]{left:22%!important;top:72%!important}
+  .map-wrap .island[style*="left:81%"]{left:78%!important;top:72%!important}
+  .player-island{width:140px!important;height:140px!important}
+}
+
 </style></head><body>
 <header class="top"><div><div class="brand">🏝️ 考照冒險島</div><div class="stats">你的職涯成就，由你來創造</div></div><div class="stats" id="topStats">Lv.1 · 0 XP</div><button onclick="openPlayer()">👤 玩家選單</button></header>
 <main>
